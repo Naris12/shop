@@ -1,0 +1,12 @@
+spring :
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url : jdbc:postgresql://localhost:5432/shop
+    username : postgres
+    password : syspass
+app:
+  token:
+    secret: testsecret
+    issuer: ShopService
