@@ -21,12 +21,12 @@ public class ProductsModel {
     private Long productId;
     private String productname;
     private String productdescription;
-    private String productprice;
+    private Double productprice;
 
     public ProductsModel() {
     }
 
-    public ProductsModel(String productname, String productdescription, String productprice) {
+    public ProductsModel(String productname, String productdescription, Double productprice) {
         this.productname = productname;
         this.productdescription = productdescription;
         this.productprice = productprice;
