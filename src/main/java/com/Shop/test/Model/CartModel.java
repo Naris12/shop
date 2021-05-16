@@ -1,5 +1,8 @@
 package com.Shop.test.Model;
 
+
+import com.Shop.test.Dto.AddtoCartDto;
+import com.Shop.test.Dto.CartDto;
 import lombok.Data;
 import org.apache.catalina.User;
 
@@ -21,12 +24,16 @@ public class CartModel {
             generator = "cart_sequence"
     )
     private Long cartid;
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private UserModel userModel;
+
+    @Column(name = "id")
+    private Long id;
+
+
+    @Column(name = "productId")
+    private Long productId;
 
     @ManyToOne
-    @JoinColumn(name = "productid")
+    @JoinColumn(name = "product")
     private ProductsModel productsModel;
 
 
@@ -34,8 +41,17 @@ public class CartModel {
     private Double totalprice;
 
 
+    public CartModel() {
 
+    }
 
+    public CartModel(Long id, Long productId, ProductsModel productsModel, int quantity, Double totalprice) {
+        this.id = id;
+        this.productId = productId;
+        this.productsModel = productsModel;
+        this.quantity = quantity;
+        this.totalprice = totalprice;
+    }
 
 
 

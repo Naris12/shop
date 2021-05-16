@@ -45,4 +45,12 @@ public class ProductsService {
     public long getproductbyid(Long productid){
         return productid;
     }
+
+    public ProductsModel getProductById2(Long productId){
+        Optional<ProductsModel> opt = productsRepository.findById(productId);
+        if(opt.isEmpty()){
+            throw new IllegalStateException("not product ID");
+        }
+        return opt.get();
+    }
 }
