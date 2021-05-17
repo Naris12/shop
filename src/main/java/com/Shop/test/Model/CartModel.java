@@ -21,12 +21,14 @@ public class CartModel {
             generator = "cart_sequence"
     )
     private Long cartid;
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private UserModel userModel;
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "productId")
+    private Long productId;
 
     @ManyToOne
-    @JoinColumn(name = "productid")
+    @JoinColumn(name = "product")
     private ProductsModel productsModel;
 
 
