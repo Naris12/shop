@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests().antMatchers("/user","/product","/login2").anonymous()
+                .and().authorizeRequests().antMatchers("/user","/product","/login2","/test","/product/allproduct").anonymous()
                 .anyRequest().authenticated()
                 .and().apply(new TokenFilterConfiguerer(tokenService));
 
