@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UserInfo</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>name</th>
+    <th>email</th>
+  </tr>
+  <tr th:each="userinfo :${user}">
+    <td th:text="${userinfo.getId()}"></td>
+      <td th:text="${userinfo.getName()}"></td>
+      <td th:text="${userinfo.getEmail()}"></td>
+  </tr>
+</table>
+</body>
+</html>

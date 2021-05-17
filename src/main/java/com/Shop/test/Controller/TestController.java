@@ -1,6 +1,7 @@
 package com.Shop.test.Controller;
 
 import com.Shop.test.Service.ProductsService;
+import com.Shop.test.Service.Userservice;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/test")
 public class TestController {
-
+    private final Userservice userservice;
     private final ProductsService productsService;
 
-    @GetMapping
+    @GetMapping("/index")
     public String homepage(Model model){
-        model.addAttribute("list",productsService.getallproduct());
+       model.addAttribute("list",productsService.getallproduct());
         return "index";
+    }
+
+    @GetMapping("/userinfo")
+    public String userpage(Model model){
+        model.addAttribute("user",userservice.getalluser());
+        return "userinfo";
     }
 }
