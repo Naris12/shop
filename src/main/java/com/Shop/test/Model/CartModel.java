@@ -1,10 +1,7 @@
 package com.Shop.test.Model;
 
 
-import com.Shop.test.Dto.AddtoCartDto;
-import com.Shop.test.Dto.CartDto;
 import lombok.Data;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 
@@ -24,17 +21,11 @@ public class CartModel {
             generator = "cart_sequence"
     )
     private Long cartid;
-<<<<<<< HEAD
 
     @Column(name = "id")
     private Long id;
 
 
-=======
-    @Column(name = "id")
-    private Long id;
-
->>>>>>> 19cc2252e0256480ccbea32aca8784da066c9ae8
     @Column(name = "productId")
     private Long productId;
 
