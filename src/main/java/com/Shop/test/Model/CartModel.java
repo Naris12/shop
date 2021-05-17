@@ -45,13 +45,6 @@ public class CartModel {
 
     }
 
-    public CartModel(Long id, Long productId, ProductsModel productsModel, int quantity, Double totalprice) {
-        this.id = id;
-        this.productId = productId;
-        this.productsModel = productsModel;
-        this.quantity = quantity;
-        this.totalprice = totalprice;
-    }
 
 
 

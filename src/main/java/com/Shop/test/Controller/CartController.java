@@ -39,8 +39,7 @@ public class CartController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CartDto> findallbyid(@PathVariable("id")Long id){
-        /*List<CartModel> allById = cartRepository.findAllById(id);
-        return allById;*/
+
         Optional<Long> opt = SecurityUtil.getcurrentUserId();
         if(opt.isEmpty()){
             throw new IllegalStateException("opt is null");

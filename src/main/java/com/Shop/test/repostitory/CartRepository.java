@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CartRepository extends JpaRepository<CartModel,Long> {
-List<CartModel> findAllById(Long id);
+
+    List<CartModel> findAllById(Long id);
 }

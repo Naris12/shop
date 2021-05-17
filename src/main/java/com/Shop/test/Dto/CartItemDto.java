@@ -16,6 +16,7 @@ public class CartItemDto {
     public CartItemDto() {
     }
 
+
     public CartItemDto(CartModel cartModel) {
      this.setCartid(cartModel.getCartid());
      this.setId(cartModel.getId());

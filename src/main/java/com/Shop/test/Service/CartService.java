@@ -96,13 +96,21 @@ public class CartService {
         Optional<UserModel> userid = userRepository.findById(aLong);
         UserModel userModel = userid.get();
 
+        //  cartlist =จำนวนProduct ทั้งหมดที่มีการเลือก
+        // cartItem = สร้างarrayList เปล่าๆมาเพื่อรับค่าจาก cartlist
+        //(CartModel cartmodel :cartlist) คือการเอาค่าจาก cartlist ไปใส่ในตัวแปร cartItem
+        //CartItemDto cartItemDto= getDtoFromCart(cartModel) คือการเอาcartModel ไปใส่ใน cartItemDto สำหรับ ArrayList
         List<CartModel> cartList = cartRepository.findAllById(userModel.getId());
         List<CartItemDto>cartItem=new ArrayList<>();
         for(CartModel cartModel:cartList){
          CartItemDto cartItemDto= getDtoFromCart(cartModel);
             cartItem.add(cartItemDto);
         }
+
+
         double totalcost=0;
+
+        //CartItemDto cartItemDto:cartItem รับค่า cartitem ไปใส่ใน cartItemDto แล้วคำนวณราคาสินค้า
         for(CartItemDto cartItemDto:cartItem){
             totalcost+=(cartItemDto.getProductsModel().getProductprice()*cartItemDto.getQuantity());
 
@@ -113,6 +121,7 @@ public class CartService {
 
     }
 
+    //ใช้สำหรับรับข้อมูลจาก cartmodel
    public static CartItemDto getDtoFromCart(CartModel cartModel){
       CartItemDto cartItemDtot = new CartItemDto(cartModel);
       return cartItemDtot;
