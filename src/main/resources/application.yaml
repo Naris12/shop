@@ -10,3 +10,6 @@ app:
   token:
     secret: testsecret
     issuer: ShopService
+server:
+  error:
+    include-stacktrace: never

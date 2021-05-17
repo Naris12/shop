@@ -4,6 +4,7 @@ import com.Shop.test.Model.ProductsModel;
 import com.Shop.test.Service.ProductsService;
 import com.Shop.test.repostitory.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,5 +39,11 @@ public class ProductsController {
     public void addproduct(@RequestBody ProductsModel productsModel){
         productsService.addProduct(productsModel.getProductname(), productsModel.getProductdescription(),
                 productsModel.getProductprice());
+    }
+
+    @GetMapping("/allproduct")
+    public String productpage(Model model){
+        model.addAttribute("listproduct",productsService.getallproduct());
+        return "testtry";
     }
 }

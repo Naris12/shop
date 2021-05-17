@@ -19,7 +19,7 @@ public class ProductsService {
         this.productsRepository = productsRepository;
     }
 
-    public ProductsModel addProduct(String productname,String productdescription,String productprice){
+    public ProductsModel addProduct(String productname,String productdescription,Double productprice){
         if(Objects.isNull(productname)){
             throw new IllegalStateException("product name null");
         }

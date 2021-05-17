@@ -3,6 +3,7 @@ package com.Shop.test.Model;
 import lombok.Data;
 import lombok.Generated;
 import org.hibernate.annotations.GeneratorType;
+import org.hibernate.mapping.Set;
 
 import javax.persistence.*;
 
@@ -33,4 +34,7 @@ public class UserModel {
         this.email = email;
         this.password = password;
     }
+
+
+
 }
