@@ -1,6 +1,10 @@
 package com.Shop.test.Service;
 
+<<<<<<< HEAD
 import com.Shop.test.Dto.AddtoCartDto;
+=======
+
+>>>>>>> 19cc2252e0256480ccbea32aca8784da066c9ae8
 import com.Shop.test.Dto.CartDto;
 import com.Shop.test.Dto.CartItemDto;
 import com.Shop.test.Model.CartModel;
@@ -14,12 +18,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+=======
+import javax.transaction.Transactional;
+>>>>>>> 19cc2252e0256480ccbea32aca8784da066c9ae8
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Data
 @AllArgsConstructor
 @Service
+@Transactional
 public class CartService {
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
@@ -27,9 +36,15 @@ public class CartService {
 
 
 
+<<<<<<< HEAD
     public CartModel addnewproducttocart(ProductsModel productsModel , Long productId, Integer quantity){
 
         //TODO:add list product to cart
+=======
+
+
+    public CartModel addnewproducttocart( ProductsModel productsModel,Integer quantity,Long productId){
+>>>>>>> 19cc2252e0256480ccbea32aca8784da066c9ae8
 
         Optional<Long> opt = SecurityUtil.getcurrentUserId();
 
@@ -46,23 +61,77 @@ public class CartService {
         UserModel userModel = userid.get();
 
         Long productId1 = productId;
+<<<<<<< HEAD
         Optional<ProductsModel> byId = productsRepository.findById(productId1);
         ProductsModel productsModel1 = byId.get();
+=======
+        Optional<ProductsModel> productid = productsRepository.findById(productId1);
+
+        ProductsModel productsModel1 = productid.get();
+
+
+>>>>>>> 19cc2252e0256480ccbea32aca8784da066c9ae8
 
         CartModel cartModel = new CartModel();
         cartModel.setId(userModel.getId());
         cartModel.setProductId(productsModel1.getProductId());
         cartModel.setProductsModel(productsModel1);
         cartModel.setQuantity(quantity);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 19cc2252e0256480ccbea32aca8784da066c9ae8
 
         Double total=productsModel1.getProductprice()*cartModel.getQuantity();
         cartModel.setTotalprice(total);
 
 
-        cartRepository.save(cartModel);
+        return cartRepository.save(cartModel);
 
 
+    }
+
+    public void findcart(){
+        Optional<Long> opt = SecurityUtil.getcurrentUserId();
+        if(opt.isEmpty()){
+            throw new IllegalStateException("no user id");
+        }
+
+        Long aLong = opt.get();
+        Optional<UserModel> userid = userRepository.findById(aLong);
+        if(userid.isEmpty()) {
+            throw new IllegalStateException("no user id");
+        }
+        UserModel userModel = userid.get();
+
+
+
+
+    }
+
+    public CartDto listCartItem(Long id){
+        Optional<Long> aLong = SecurityUtil.getcurrentUserId();
+        Long aLong1 = aLong.get();
+        Optional<UserModel> userid = userRepository.findById(aLong1);
+        if(userid.isEmpty()){
+            throw new IllegalStateException("user id not found");
+
+        }
+        UserModel userModel = userid.get();
+
+        List<CartModel> cartModelById = cartRepository.findCartModelById(userModel.getId());
+        List<CartItemDto>cartItem= new ArrayList<>();
+        for(CartModel cartModel:cartModelById){
+            CartItemDto cartItemDto=getDtofromCart(cartModel);
+            cartItem.add(cartItemDto);
+        }
+
+        double totocost=0;
+
+        for(CartItemDto cartItemDto:cartItem){
+            totocost+=(cartItemDto.getProductsModel().getProductprice()*cartItemDto.getQuantity());
+
+<<<<<<< HEAD
         return cartModel;
     }
 
@@ -127,6 +196,20 @@ public class CartService {
       return cartItemDtot;
    }
 
+=======
+        }
+        CartDto cartDto=new CartDto(cartItem,totocost);
+        return cartDto;
+
+    }
+
+
+    public static CartItemDto getDtofromCart(CartModel cartModel){
+        CartItemDto cartItemDto=new CartItemDto(cartModel);
+        return cartItemDto;
+    }
+
+>>>>>>> 19cc2252e0256480ccbea32aca8784da066c9ae8
 
 
 
