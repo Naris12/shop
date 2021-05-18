@@ -1,5 +1,7 @@
 package com.Shop.test.Controller;
 
+import com.Shop.test.Model.LoginModel;
+import com.Shop.test.Service.LoginService;
 import com.Shop.test.Service.ProductsService;
 import com.Shop.test.Service.Userservice;
 import lombok.AllArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
     private final Userservice userservice;
     private final ProductsService productsService;
+    private final LoginService loginService;
 
     @GetMapping("/index")
     public String homepage(Model model){
@@ -25,5 +28,10 @@ public class TestController {
     public String userpage(Model model){
         model.addAttribute("user",userservice.getalluser());
         return "userinfo";
+    }
+
+    @GetMapping("/login2")
+    public String loginpage(LoginModel loginModel){
+        return "Login";
     }
 }

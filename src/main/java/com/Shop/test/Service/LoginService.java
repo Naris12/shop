@@ -14,14 +14,14 @@ public class LoginService {
     private final Userservice userservice;
     private final TokenService tokenService;
 
-    public String login(LoginModel loginModel){
-        Optional<UserModel> opt = userRepository.findByemail(loginModel.getEmail());
+    public String login(String  email,String  password){
+        Optional<UserModel> opt = userRepository.findByemail(email);
         if(opt.isEmpty()){
             throw new IllegalStateException("login fail");
         }
         UserModel userModel=opt.get();
 
-        if(!userservice.mactchpassword(loginModel.getPassword(),userModel.getPassword())){
+        if(!userservice.mactchpassword(password,userModel.getPassword())){
             throw new IllegalStateException("login fail2");
         }
         String token = tokenService.tokenize(userModel);
