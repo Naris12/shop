@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -29,21 +30,20 @@ public class ProductsController {
        return productsRepository.findById(productId);
 
     }
-    @GetMapping
+    @GetMapping("/all")
     public List<ProductsModel>getallproduct(ProductsModel productsModel){
         return productsService.getallproduct();
     }
 
 
-    @PostMapping
+    @PostMapping("/add")
     public void addproduct(@RequestBody ProductsModel productsModel){
+        if(Objects.isNull(productsModel.getProductUrl())){
+            productsModel.setProductUrl("http://blog.sogoodweb.com/upload/510/ZDqhSBYemO.jpg");
+        }
         productsService.addProduct(productsModel.getProductname(), productsModel.getProductdescription(),
-                productsModel.getProductprice());
+                productsModel.getProductprice(),productsModel.getProductUrl());
     }
 
-    @GetMapping("/allproduct")
-    public String productpage(Model model){
-        model.addAttribute("listproduct",productsService.getallproduct());
-        return "testtry";
-    }
+
 }

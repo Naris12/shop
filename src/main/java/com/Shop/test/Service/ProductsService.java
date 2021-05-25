@@ -19,7 +19,7 @@ public class ProductsService {
         this.productsRepository = productsRepository;
     }
 
-    public ProductsModel addProduct(String productname,String productdescription,Double productprice){
+    public ProductsModel addProduct(String productname,String productdescription,Double productprice,String producturl){
         if(Objects.isNull(productname)){
             throw new IllegalStateException("product name null");
         }
@@ -34,6 +34,10 @@ public class ProductsService {
         productsModel.setProductname(productname);
         productsModel.setProductdescription(productdescription);
         productsModel.setProductprice(productprice);
+        if(Objects.isNull(productsModel.getProductUrl())){
+            productsModel.setProductUrl("http://blog.sogoodweb.com/upload/510/ZDqhSBYemO.jpg");
+        }
+        productsModel.setProductUrl(producturl);
         productsRepository.save(productsModel);
 
         return productsModel;

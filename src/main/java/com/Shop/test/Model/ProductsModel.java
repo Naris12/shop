@@ -22,13 +22,15 @@ public class ProductsModel {
     private String productname;
     private String productdescription;
     private Double productprice;
+    private String productUrl;
 
     public ProductsModel() {
     }
 
-    public ProductsModel(String productname, String productdescription, Double productprice) {
+    public ProductsModel(String productname, String productdescription, Double productprice,String productUrl) {
         this.productname = productname;
         this.productdescription = productdescription;
         this.productprice = productprice;
+        this.productUrl=productUrl;
     }
 }

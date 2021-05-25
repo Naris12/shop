@@ -4,6 +4,7 @@ import com.Shop.test.Model.UserModel;
 import com.Shop.test.repostitory.UserRepository;
 import com.Shop.test.util.SecurityUtil;
 import lombok.AllArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class Userservice {
         return userRepository.findAll();
     }
 
-    public UserModel addnewuser(String name, String email, String password) {
+    public UserModel addnewuser(String name, String email, String password,String profileUrl) {
 
         if (Objects.isNull(name) || name.length() == 0) {
             throw new IllegalStateException("name null");
@@ -41,10 +42,16 @@ public class Userservice {
         if (Objects.isNull(email) || email.length() == 0) {
             throw new IllegalStateException("email null");
         }
+
+
         UserModel userModel = new UserModel();
         userModel.setName(name);
         userModel.setPassword(passwordEncoder.encode(password));
         userModel.setEmail(email);
+        if(Objects.isNull(profileUrl)){
+            userModel.setProfileUrl("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg");
+        }
+        userModel.setProfileUrl(profileUrl);
         userRepository.save(userModel);
         return userModel;
 
@@ -73,4 +80,16 @@ public class Userservice {
         return tokenService.tokenize(userModel);
 
     }
+
+    public UserModel updateuser(UserModel userModel){
+        return  userRepository.save(userModel);
+    }
+
+    public void deleteuser(Long id){
+        userRepository.deleteById(id);
+    }
+
+
+
+
 }
