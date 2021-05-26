@@ -48,10 +48,12 @@ public class Userservice {
         userModel.setName(name);
         userModel.setPassword(passwordEncoder.encode(password));
         userModel.setEmail(email);
-        if(Objects.isNull(profileUrl)){
-            userModel.setProfileUrl("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg");
-        }
         userModel.setProfileUrl(profileUrl);
+        if(Objects.isNull(profileUrl)||profileUrl.length()==0){
+            String url= "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg";
+            userModel.setProfileUrl(url);
+        }
+
         userRepository.save(userModel);
         return userModel;
 
@@ -82,6 +84,11 @@ public class Userservice {
     }
 
     public UserModel updateuser(UserModel userModel){
+        if(Objects.isNull(userModel.getProfileUrl())||userModel.getProfileUrl().length()==0){
+            String url= "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg";
+            userModel.setProfileUrl(url);
+        }
+
         return  userRepository.save(userModel);
     }
 

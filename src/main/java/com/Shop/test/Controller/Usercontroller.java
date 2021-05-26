@@ -43,7 +43,9 @@ public class Usercontroller {
     @PostMapping("/add")
     public void addnewuser(@RequestBody UserModel userModel) {
        if(Objects.isNull(userModel.getProfileUrl())){
+
            userModel.setProfileUrl("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg");
+
        }
         userservice.addnewuser(userModel.getName(), userModel.getEmail(), userModel.getPassword(),userModel.getProfileUrl());
     }
