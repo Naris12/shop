@@ -34,10 +34,11 @@ public class ProductsService {
         productsModel.setProductname(productname);
         productsModel.setProductdescription(productdescription);
         productsModel.setProductprice(productprice);
-        if(Objects.isNull(productsModel.getProductUrl())){
+        productsModel.setProductUrl(producturl);
+        if(Objects.isNull(productsModel.getProductUrl())||productsModel.getProductUrl().length()==0){
             productsModel.setProductUrl("http://blog.sogoodweb.com/upload/510/ZDqhSBYemO.jpg");
         }
-        productsModel.setProductUrl(producturl);
+
         productsRepository.save(productsModel);
 
         return productsModel;
@@ -48,5 +49,13 @@ public class ProductsService {
     }
     public long getproductbyid(Long productid){
         return productid;
+    }
+
+    public ProductsModel updateproduct(ProductsModel productsModel){
+       return productsRepository.save(productsModel);
+    }
+
+    public void deleteproduct(Long productid){
+        productsRepository.deleteById(productid);
     }
 }
