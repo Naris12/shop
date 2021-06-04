@@ -30,8 +30,8 @@ public class CartController {
     public void addnewproducttocart(UserModel userModel, ProductsModel productsModel,Integer quantity,Long productId){
        cartService.addnewproducttocart(productsModel,quantity,productId);
     }*/
-
-    @PostMapping
+    @CrossOrigin
+    @PostMapping("/add")
     public CartModel addnewproducttocart2(@RequestBody CartModel cartModel){
        return cartService.addnewproducttocart(cartModel.getProductsModel(),cartModel.getQuantity(),cartModel.getProductId());
     }

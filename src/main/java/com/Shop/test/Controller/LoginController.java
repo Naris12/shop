@@ -1,8 +1,12 @@
 package com.Shop.test.Controller;
 
+import com.Shop.test.Model.LoginModel;
+import com.Shop.test.Model.LoginResponse;
 import com.Shop.test.Service.LoginService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -14,9 +18,11 @@ public class LoginController {
     private final LoginService loginService;
 
     @PostMapping
-    public RedirectView testlogin(String email, String password){
-       loginService.login(email, password);
-       return new RedirectView("/index");
+    public ResponseEntity<LoginResponse> testlogin(@RequestBody LoginModel loginModel){
+        LoginResponse response = loginService.login(loginModel);
+
+        return  ResponseEntity.ok(response);
+
 
     }
 }

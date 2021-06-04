@@ -4,7 +4,6 @@ import com.Shop.test.Model.UserModel;
 import com.Shop.test.repostitory.UserRepository;
 import com.Shop.test.util.SecurityUtil;
 import lombok.AllArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -94,6 +93,15 @@ public class Userservice {
 
     public void deleteuser(Long id){
         userRepository.deleteById(id);
+    }
+
+
+    public UserModel getcurrentUserinfo(){
+        Optional<Long> id = SecurityUtil.getcurrentUserId();
+        Long aLong = id.get();
+        Optional<UserModel> userID = userRepository.findById(aLong);
+        UserModel userinfo = userID.get();
+        return userinfo;
     }
 
 

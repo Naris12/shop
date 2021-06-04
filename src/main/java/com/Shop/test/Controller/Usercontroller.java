@@ -67,6 +67,12 @@ public class Usercontroller {
         userRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @GetMapping("/info")
+    public UserModel getcurrentUserinfo(){
+        UserModel userModel = userservice.getcurrentUserinfo();
+        return userModel;
+    }
 
 
 }

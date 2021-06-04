@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests().antMatchers("/user","/**","/user/**","/product","/login2","/test","/product/allproduct","/test/index","/test/**").anonymous()
+                .and().authorizeRequests().antMatchers("/user","/user/add","/user/all","/user/update","/user/delete/**","/product/**","/login2","/test","/product/allproduct","/test/index","/test/**","/cart").anonymous()
                 .anyRequest().authenticated()
                 .and().apply(new TokenFilterConfiguerer(tokenService));
 
